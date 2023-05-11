@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <title>Add custom markers in Mapbox GL JS</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker {
+  background-image: url('https://cdn.glitch.global/ce1be1e2-b70c-4c30-8681-a01fe4a10e23/marker.svg?1683536954372');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+      .mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoia2FsaW5hODUiLCJhIjoiY2xoYm9pb3RtMHRscjNqbHQza213djZnYyJ9.pQ4omxQoltVRbZkwW1oQ8w';
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v11',
+  center: [8.27, 46.9],
+  zoom: 2
+});
+
+const geojson = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.498426, 46.526243]
+      },
+      properties: {
+        title: 'Catherine Cruchon',
+        description: 'Domaine Henri Cruchon'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.373449, 46.478953]
+      },
+      properties: {
+        title: 'Laura Paccot',
+        description: 'Domaine de la Colombe'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.247857, 46.439678]
+      },
+      properties: {
+        title: 'Noémie Graff',
+        description: 'Domaine du Satyre'
+      }
+    }
+  ]
+};
+
+  // add markers to map
+for (const feature of geojson.features) {
+  // create a HTML element for each feature
+  const el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(feature.geometry.coordinates)
+    .setPopup(
+    new mapboxgl
+    .Popup({ offset: 25 }) // add popups
+      .setHTML(
+        `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+      )
+  )
+    .addTo(map);
+}
+
+
+</script>
+
+</body>
+</html>
