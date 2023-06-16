@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
     <meta charset='utf-8' />
-    <title>Add custom markers in Mapbox GL JS</title>
+    <title>BottleBack</title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
@@ -65,7 +65,7 @@ const geojson = {
       },
       properties: {
         title: 'Catherine Cruchon',
-        description: 'Domaine Henri Cruchon'
+        description: '<a href="https://www.henricruchon.com/le-domaine/" target="_blank" title="Opens in a new window">Domaine Henri Cruchon</a>',
       }
     },
     {
@@ -76,7 +76,7 @@ const geojson = {
       },
       properties: {
         title: 'Laura Paccot',
-        description: 'Domaine de la Colombe'
+        description: '<a href="https://www.lacolombe.ch/" target="_blank" title="Opens in a new window">Domaine de la Colombe</a>'
       }
     },
     {
@@ -87,7 +87,62 @@ const geojson = {
       },
       properties: {
         title: 'Noémie Graff',
-        description: 'Domaine du Satyre'
+        description: '<a href="https://www.lesatyre.ch/domaine" target="_blank" title="Opens in a new window">Domaine du Satyre</a>'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.490315, 46.522378]
+      },
+      properties: {
+        title: 'Lionel Widmer',
+        description: '<a href="https://www.cavedusignal.ch/" target="_blank" title="Opens in a new window">Cave du Signal</a>'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.710704, 46.502972]
+      },
+      properties: {
+        title: 'Vincent Chollet',
+        description: '<a href="https://www.mermetus.ch/" target="_blank" title="Opens in a new window">Domaine Mermetus</a>'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.488226, 46.517850]
+      },
+      properties: {
+        title: 'Philippe Meyer',
+        description: '<a href="https://www.vinsdemorges.ch/2017/02/10/domaine-de-marcelin/" target="_blank" title="Opens in a new window">Domaine de Marcelin</a>'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.713097, 46.502396]
+      },
+      properties: {
+        title: 'Jean-Daniel Porta',
+        description: '<a href="https://www.vins-porta.ch/" target="_blank" title="Opens in a new window">Domaine Porta</a>'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.524784, 46.653116]
+      },
+      properties: {
+        title: 'François de Coulon',
+        description: '<a href="https://www.chateau-eclepens.ch/" target="_blank" title="Opens in a new window">Château d’Eclépens</a>'
       }
     }
   ]
@@ -111,8 +166,7 @@ for (const feature of geojson.features) {
   )
     .addTo(map);
 }
-
-
+  
 </script>
 
 </body>
